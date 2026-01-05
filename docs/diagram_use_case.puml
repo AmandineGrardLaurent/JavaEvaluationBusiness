@@ -10,8 +10,8 @@ USER <|-- USER_CONNECTED
 
 
 package "application vente formations" {
-    usecase "passer une commande" as PLACE_ORDER
-    usecase "consulter ses commandes" as DISPLAY_ORDERS
+    usecase "valider une commande" as CONFIRM_ORDER
+    usecase "afficher ses commandes" as DISPLAY_ORDERS
     usecase "afficher les formations" as DISPLAY_COURSES
     usecase "gérer son panier" as MANAGE_CART
     usecase "se connecter" as CONNECT
@@ -20,12 +20,12 @@ package "application vente formations" {
 
 USER -- DISPLAY_COURSES
 
-USER_CONNECTED -- PLACE_ORDER
+USER_CONNECTED -- CONFIRM_ORDER
 USER_CONNECTED -- DISPLAY_ORDERS
 USER_CONNECTED -- MANAGE_CART
 
 DISPLAY_ORDERS ..> CONNECT : <<include>>
-PLACE_ORDER ..> CONNECT : <<include>>
+CONFIRM_ORDER ..> CONNECT : <<include>>
 MANAGE_CART ..> CONNECT : <<include>>
 
 @enduml
