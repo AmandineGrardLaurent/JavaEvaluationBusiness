@@ -1,0 +1,31 @@
+@startuml business
+
+left to right direction
+
+actor "utilisateur connecté" as USER_CONNECTED
+actor "utilisateur non connecté" as USER
+
+
+USER <|-- USER_CONNECTED
+
+
+package business {
+    usecase "passer une commande" as PLACE_ORDER
+    usecase "consulter ses commandes" as DISPLAY_ORDERS
+    usecase "afficher les formations" as DISPLAY_COURSES
+    usecase "gérer son panier" as MANAGE_CART
+    usecase "se connecter" as CONNECT
+}
+
+
+USER -- DISPLAY_COURSES
+
+USER_CONNECTED -- PLACE_ORDER
+USER_CONNECTED -- DISPLAY_ORDERS
+USER_CONNECTED -- MANAGE_CART
+
+DISPLAY_ORDERS ..> CONNECT : <<include>>
+PLACE_ORDER ..> CONNECT : <<include>>
+MANAGE_CART ..> CONNECT : <<include>>
+
+@enduml
