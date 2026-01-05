@@ -1,4 +1,4 @@
-@startuml business
+@startuml vente formations
 
 left to right direction
 
@@ -9,7 +9,7 @@ actor "utilisateur non connecté" as USER
 USER <|-- USER_CONNECTED
 
 
-package business {
+package "application vente formations" {
     usecase "passer une commande" as PLACE_ORDER
     usecase "consulter ses commandes" as DISPLAY_ORDERS
     usecase "afficher les formations" as DISPLAY_COURSES
