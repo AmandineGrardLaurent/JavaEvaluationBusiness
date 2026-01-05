@@ -1,0 +1,46 @@
+@startuml
+
+abstract class Person {
+    - string first_name
+    - string last_name
+}
+
+class User {
+    - string password
+}
+
+class Customer {
+    - String address
+    - string email
+    - string phone_number
+}
+
+Person <|-- User
+Person <|-- Customer
+
+class Course {
+    - string name
+    - string description
+    - int duration_days
+    - boolean is_presential
+    - boolean is_online
+    - decimal price
+}
+
+class Cart {
+    - id : int
+}
+
+Cart "*" o-- "1..*" Course
+User "1" --> "0..1" Cart
+
+class Order {
+    - date order_date
+    - decimal total_amount
+}
+
+Order "*" --> "1..*" Course
+Order "1..*" --> "1" Customer
+User "1" --> "0..*" Order
+
+@enduml
