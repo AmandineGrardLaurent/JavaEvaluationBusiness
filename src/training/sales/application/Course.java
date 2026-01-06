@@ -86,7 +86,7 @@ public class Course {
 		return courseDao.readAll();
 	}
 	
-	static public List<Course> getAllCoursesByType(boolean isOnSite, boolean isOnline){
+	static public List<Course> getCoursesByType(boolean isOnSite, boolean isOnline){
 		CourseDAO courseDao = new CourseDAO();
 		return courseDao.readAllByType(isOnSite, isOnline);
 	}
@@ -103,7 +103,7 @@ public class Course {
 	    // Course type : onSite or online or both
 	    String courseType = (isOnSite() && isOnline()) ? "mixte" 
 	                  : isOnline() ? "en ligne" 
-	                  : "présentiel";
+	                  : "en présentiel";
 
 	    // Result
 	    return String.format("| %-"+nameWidth+"s | %-"+descriptionWidth+"s | %-"+durationDaysWidth+"s | %-"+typeWidth+"s | %-"+priceWidth+"s |",
