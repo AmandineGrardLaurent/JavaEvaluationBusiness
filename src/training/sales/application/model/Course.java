@@ -1,9 +1,5 @@
 package training.sales.application.model;
 
-import java.util.List;
-
-import training.sales.application.dao.CourseDAO;
-
 public class Course {
 	
 	private int id;
