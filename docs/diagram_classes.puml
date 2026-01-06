@@ -1,8 +1,8 @@
 @startuml
 
 abstract class Person {
-    - string first_name
-    - string last_name
+    - string firstname
+    - string lastname
 }
 
 class User {
@@ -10,9 +10,9 @@ class User {
 }
 
 class Customer {
-    - String address
+    - string address
     - string email
-    - string phone_number
+    - string phoneNumber
 }
 
 Person <|-- User
@@ -21,9 +21,9 @@ Person <|-- Customer
 class Course {
     - string name
     - string description
-    - int duration_days
-    - boolean is_presential
-    - boolean is_on_site
+    - int durationDays
+    - boolean isOnline
+    - boolean isOnSite
     - decimal price
 }
 
@@ -35,8 +35,8 @@ Cart "*" o-- "1..*" Course
 User "1" --> "0..1" Cart
 
 class Order {
-    - date order_date
-    - decimal total_amount
+    - date orderDate
+    - decimal totalAmount
 }
 
 Order "*" --> "1..*" Course
