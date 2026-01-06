@@ -12,7 +12,7 @@ public class Main {
 	    for (Course course : courses) {
 		            System.out.println(course);
 		}
-	    System.out.println(" ");
+	    System.out.println("\n");
 	}
 	
 	public static void main(String[] args) {
@@ -22,14 +22,15 @@ public class Main {
 	    
 	    // Display courses on-site only
 	    displayCourses(Course.getCoursesByType(true, false), "La liste des formations en présentiel : ");
-
 	    
 	    // Display courses online only
 	    displayCourses(Course.getCoursesByType(false, true), "La liste des formations en ligne : ");
-
 	    
 	    // Display courses available in both types
 	    displayCourses(Course.getCoursesByType(true, true), "La liste des formations disponibles en ligne et en présentiel : ");
 
+	    // Display courses contain a keyword
+	    String keyword = "API";
+	    displayCourses(Course.getCoursesByKeyword(keyword), String.format("La liste des formations correspondant au mot-clé %s : ", keyword));
 	}
 }

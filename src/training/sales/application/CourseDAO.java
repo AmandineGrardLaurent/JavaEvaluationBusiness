@@ -69,4 +69,37 @@ public class CourseDAO {
 
         return courses;
 	}
+	
+	public List<Course> readAllByKeyword(String keyword){
+		List<Course> courses = new ArrayList<>();
+        String sql = "SELECT id_course, name, description, duration_days, is_on_site, is_online, price FROM Course WHERE name LIKE ? OR description LIKE ?";
+
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement preparedStmt = connection.prepareStatement(sql)){
+            	 preparedStmt.setString(1, "%" + keyword + "%");
+            	 preparedStmt.setString(2, "%" + keyword + "%");
+        		
+        try (ResultSet resultSet = preparedStmt.executeQuery()){
+
+	            while (resultSet.next()) {
+	                int id = resultSet.getInt("id_course");
+	                String name = resultSet.getString("name");
+	                String description = resultSet.getString("description");
+	                int durationDays = resultSet.getInt("duration_days");
+	                boolean isOnSite = resultSet.getBoolean("is_on_site");
+	                boolean isOnline = resultSet.getBoolean("is_online");		
+	                double price = resultSet.getDouble("price");
+	
+	                Course course = new Course(id, name, description, durationDays, isOnSite, isOnline, price);
+	                courses.add(course);
+	            }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return courses;
+	}
+	
 }

@@ -90,6 +90,11 @@ public class Course {
 		CourseDAO courseDao = new CourseDAO();
 		return courseDao.readAllByType(isOnSite, isOnline);
 	}
+	
+	static public List<Course> getCoursesByKeyword(String keyword){
+		CourseDAO courseDao = new CourseDAO();
+		return courseDao.readAllByKeyword(keyword);
+	}
 
 	@Override
 	public String toString() {
