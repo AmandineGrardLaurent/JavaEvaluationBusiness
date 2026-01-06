@@ -23,7 +23,7 @@ class Course {
     - string description
     - int duration_days
     - boolean is_presential
-    - boolean is_online
+    - boolean is_on_site
     - decimal price
 }
 

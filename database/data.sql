@@ -1,4 +1,4 @@
-INSERT INTO Course (name, description, duration_days, is_presential, is_online, price) VALUES
+INSERT INTO Course (name, description, duration_days, is_on_site, is_online, price) VALUES
 ('Java Débutant',
  'Bases du langage Java et programmation orientée objet',
  5, TRUE, TRUE, 1200.00),

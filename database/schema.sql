@@ -33,7 +33,7 @@ CREATE TABLE course(
    name VARCHAR(50),
    description VARCHAR(150),
    duration_days INT,
-   is_presential BOOLEAN,
+   is_on_site BOOLEAN,
    is_online BOOLEAN,
    price DECIMAL(7,2),
    PRIMARY KEY(id_course)

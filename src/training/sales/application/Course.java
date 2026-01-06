@@ -8,16 +8,16 @@ public class Course {
 	private String name;
 	private String description;
 	private int durationDays;
-	private boolean isPresential;
+	private boolean isOnSite;
 	private boolean isOnline;
 	private double price;
 	
-	public Course(int id, String name, String description, int durationDays, boolean isPresential, boolean isOnline, double price) {
+	public Course(int id, String name, String description, int durationDays, boolean isOnSite, boolean isOnline, double price) {
 		this.id = id;
 		this.name = name;
 		this.description = description;
 		this.durationDays = durationDays;
-		this.isPresential = isPresential;
+		this.isOnSite = isOnSite;
 		this.isOnline = isOnline;
 		this.price = price;
 	}
@@ -57,12 +57,12 @@ public class Course {
 		this.durationDays = durationDays;
 	}
 
-	public boolean isPresential() {
-		return isPresential;
+	public boolean isOnSite() {
+		return isOnSite;
 	}
 
-	public void setPresential(boolean isPresential) {
-		this.isPresential = isPresential;
+	public void setOnSite(boolean isOnSite) {
+		this.isOnSite = isOnSite;
 	}
 
 	public boolean isOnline() {
@@ -85,18 +85,23 @@ public class Course {
 		CourseDAO courseDao = new CourseDAO();
 		return courseDao.readAll();
 	}
+	
+	static public List<Course> getAllCoursesByType(boolean isOnSite, boolean isOnline){
+		CourseDAO courseDao = new CourseDAO();
+		return courseDao.readAllByType(isOnSite, isOnline);
+	}
 
 	@Override
 	public String toString() {
-	    // Colmun width
+	    // Column width
 	    int nameWidth = 30;
 	    int descriptionWidth = 65;
 	    int durationDaysWidth = 10;
 	    int typeWidth = 15;
 	    int priceWidth =10;
 
-	    // Course type : presential or online or both
-	    String courseType = (isPresential() && isOnline()) ? "mixte" 
+	    // Course type : onSite or online or both
+	    String courseType = (isOnSite() && isOnline()) ? "mixte" 
 	                  : isOnline() ? "en ligne" 
 	                  : "présentiel";
 
