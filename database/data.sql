@@ -91,4 +91,3 @@ INSERT INTO customer (address, email, phone_number, id_person) VALUES
 ('18 boulevard Sud, Marseille', 'ines.fournier@mail.com', '0634567890', 8),
 ('9 rue des Lilas, Lille', 'ethan.bernard@mail.com', '0645678901', 9),
 ('22 place Bellecour, Lyon', 'sarah.dubois@mail.com', '0656789012', 10);
-
