@@ -88,11 +88,25 @@ public class Course {
 
 	@Override
 	public String toString() {
-		return "| " + getName() + " | " 
-				+ getDescription() + " | " 
-				+ getDurationDays() + " jours | "
-				+ (isPresential() && isOnline() ? "mixte" : isOnline()? "en ligne" : "présentiel") + " | "
-				+ getPrice() + " €";
+	    // Colmun width
+	    int nameWidth = 30;
+	    int descriptionWidth = 65;
+	    int durationDaysWidth = 10;
+	    int typeWidth = 15;
+	    int priceWidth =10;
+
+	    // Course type : presential or online or both
+	    String courseType = (isPresential() && isOnline()) ? "mixte" 
+	                  : isOnline() ? "en ligne" 
+	                  : "présentiel";
+
+	    // Result
+	    return String.format("| %-"+nameWidth+"s | %-"+descriptionWidth+"s | %-"+durationDaysWidth+"s | %-"+typeWidth+"s | %-"+priceWidth+"s |",
+	            getName(), 
+	            getDescription(), 
+	            getDurationDays() + " jours", 
+	            courseType, 
+	            getPrice() + " €");
 	}
 	
 }
