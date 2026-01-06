@@ -12,7 +12,7 @@ public class CourseDAO {
 
 	public List<Course> readAll() {
         List<Course> courses = new ArrayList<>();
-        String sql = "SELECT * FROM Course";
+        String sql = "SELECT id_course, name, description, duration_days, is_presential, is_online, price FROM Course";
 
         try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement preparedStmt = connection.prepareStatement(sql);
