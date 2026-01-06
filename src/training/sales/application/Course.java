@@ -1,15 +1,19 @@
 package training.sales.application;
 
+import java.util.List;
+
 public class Course {
 	
+	private int id;
 	private String name;
 	private String description;
 	private int durationDays;
 	private boolean isPresential;
 	private boolean isOnline;
-	private float price;
+	private double price;
 	
-	public Course(String name, String description, int durationDays, boolean isPresential, boolean isOnline, float price) {
+	public Course(int id, String name, String description, int durationDays, boolean isPresential, boolean isOnline, double price) {
+		this.id = id;
 		this.name = name;
 		this.description = description;
 		this.durationDays = durationDays;
@@ -18,6 +22,17 @@ public class Course {
 		this.price = price;
 	}
 	
+	
+	public int getId() {
+		return id;
+	}
+
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+
 	public String getName() {
 		return name;
 	}
@@ -58,12 +73,17 @@ public class Course {
 		this.isOnline = isOnline;
 	}
 
-	public float getPrice() {
+	public double getPrice() {
 		return price;
 	}
 
-	public void setPrice(float price) {
+	public void setPrice(double price) {
 		this.price = price;
+	}
+	
+	static public List<Course> getAllCourses() {
+		CourseDAO courseDao = new CourseDAO();
+		return courseDao.readAll();
 	}
 
 	@Override
