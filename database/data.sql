@@ -91,3 +91,21 @@ INSERT INTO customer (address, email, phone_number, id_person) VALUES
 ('18 boulevard Sud, Marseille', 'ines.fournier@mail.com', '0634567890', 8),
 ('9 rue des Lilas, Lille', 'ethan.bernard@mail.com', '0645678901', 9),
 ('22 place Bellecour, Lyon', 'sarah.dubois@mail.com', '0656789012', 10);
+
+INSERT INTO order_ (total_amount, order_date, id_user, id_customer) VALUES
+(1800.00, '2024-10-01', 1, 1),
+(1800.00, '2024-10-05', 2, 2),
+(2100.00, '2024-10-10', 3, 3),
+(2700.00, '2024-10-12', 4, 4),
+(2400.00, '2024-10-15', 5, 5);
+
+INSERT INTO order_course (id_order, id_course) VALUES
+(1, 1),
+(1, 6),
+(2, 5),
+(3, 8),
+(3, 14),
+(4, 11),
+(4, 16),
+(5, 2),
+(5, 3);
