@@ -80,4 +80,22 @@ public class CartDAO {
 
            return courses;
     }
+	
+	public boolean deleteCourse(int idCourse, int idUser) {
+		String sql = "DELETE FROM cart WHERE id_course = ? AND id_user = ?";
+		try (Connection connection = DatabaseConnection.getConnection();
+		         PreparedStatement preparedStmt = connection.prepareStatement(sql)) {
+			
+			preparedStmt.setInt(1, idCourse);
+			preparedStmt.setInt(2, idUser);
+			
+			int deletedRows = preparedStmt.executeUpdate();
+			
+			return deletedRows > 0;
+		}
+		catch (SQLException e) {
+		    e.printStackTrace();
+		    return false;
+		}
+	}
 }

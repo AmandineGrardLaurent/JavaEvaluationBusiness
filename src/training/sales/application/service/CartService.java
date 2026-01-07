@@ -23,5 +23,12 @@ public class CartService {
 		return cartDao.getCourseByUser(idUser);
 	}
 	
-	
+	public void destroyCourseInCart(int idCourse, int idUser) {
+		if (cartDao.deleteCourse(idCourse, idUser)) {
+			System.out.println("Formation supprimée");
+		}
+		else{
+			System.out.println("Erreur lors de la suppression de la formation.");
+		};
+	}
 }
