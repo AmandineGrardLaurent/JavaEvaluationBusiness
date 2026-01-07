@@ -41,12 +41,14 @@ CREATE TABLE course(
 ) ENGINE = InnoDB;
 
 CREATE TABLE cart(
-   id_cart INT AUTO_INCREMENT,
-   id_user INT NOT NULL,
-   PRIMARY KEY(id_cart),
-   UNIQUE(id_user),
-   FOREIGN KEY(id_user) REFERENCES user_(id_user)
-) ENGINE = InnoDB;
+    id_cart INT AUTO_INCREMENT,
+    id_user INT NOT NULL,
+    id_course INT NOT NULL,
+    PRIMARY KEY(id_cart),
+    FOREIGN KEY(id_user) REFERENCES user_(id_user),
+    FOREIGN KEY(id_course) REFERENCES course(id_course),
+    UNIQUE(id_user, id_course)
+);
 
 CREATE TABLE order_(
    id_order INT AUTO_INCREMENT,
@@ -59,15 +61,6 @@ CREATE TABLE order_(
    FOREIGN KEY(id_customer) REFERENCES customer(id_customer)
 ) ENGINE = InnoDB;
 
-CREATE TABLE cart_course(
-   id_cart_course INT AUTO_INCREMENT,
-   id_course INT,
-   id_cart INT,
-   PRIMARY KEY(id_cart_course),
-   FOREIGN KEY(id_course) REFERENCES course(id_course),
-   FOREIGN KEY(id_cart) REFERENCES cart(id_cart),
-   UNIQUE(id_cart, id_course)
-) ENGINE = InnoDB;
 
 CREATE TABLE order_course(
    id_order_course INT AUTO_INCREMENT,
