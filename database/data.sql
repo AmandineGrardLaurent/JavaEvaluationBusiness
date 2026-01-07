@@ -77,12 +77,12 @@ INSERT INTO person (firstname, lastname) VALUES
 ('Sarah', 'Dubois');
 
 
-INSERT INTO user_ (password, id_person) VALUES
-('userpass1', 1),
-('userpass2', 2),
-('userpass3', 3),
-('userpass4', 4),
-('userpass5', 5);
+INSERT INTO user_ (login, password, id_person) VALUES
+('lucasmartin', 'userpass1', 1),
+('emmadurand', 'userpass2', 2),
+('noahpetit', 'userpass3', 3),
+('leamoreau', 'userpass4', 4),
+('hugolefevre', 'userpass5', 5);
 
 
 INSERT INTO customer (address, email, phone_number, id_person) VALUES

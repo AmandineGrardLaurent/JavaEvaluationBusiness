@@ -12,6 +12,7 @@ CREATE TABLE person(
 CREATE TABLE user_(
    id_user INT AUTO_INCREMENT,
    password VARCHAR(50),
+   login VARCHAR(50),
    id_person INT NOT NULL,
    PRIMARY KEY(id_user),
    FOREIGN KEY(id_person) REFERENCES person(id_person)
