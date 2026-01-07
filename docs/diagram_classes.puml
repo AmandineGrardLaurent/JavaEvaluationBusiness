@@ -1,47 +1,58 @@
 @startuml
 
 abstract class Person {
-    - string firstname
-    - string lastname
+    - firstname : String
+    - lastname : String
 }
 
 class User {
-    - string password
-    - string login
+    - password : String
+    - login : String
 }
 
 class Customer {
-    - string address
-    - string email
-    - string phoneNumber
+    - address : String
+    - email : String
+    - phoneNumber : String
 }
 
-Person <|-- User
-Person <|-- Customer
-
 class Course {
-    - string name
-    - string description
-    - int durationDays
-    - boolean isOnline
-    - boolean isOnSite
-    - decimal price
+    - name : String
+    - description : String
+    - durationDays : int
+    - isOnline : boolean
+    - isOnSite : boolean
+    - price : decimal
 }
 
 class Cart {
-    - id : int
 }
-
-Cart "*" o-- "1..*" Course
-User "1" --> "0..1" Cart
 
 class Order {
-    - date orderDate
-    - decimal totalAmount
+    - orderDate : Date
+    - totalAmount : decimal
 }
 
-Order "*" --> "1..*" Course
-Order "1..*" --> "1" Customer
+class OrderCourse {
+}
+
+' Héritage
+Person <|-- User
+Person <|-- Customer
+
+' Relations User -> Cart
+User "1" --> "0..1" Cart
+Cart "1" o-- "0..*" Course : contains
+
+' Relations User -> Order
 User "1" --> "0..*" Order
+
+' Relation Order -> Customer
+Order "1" --> "1" Customer : for
+Customer "1" --> "0..*" Order
+
+' Relation Order -> OrderCourse
+Order "1" *-- "1..*" OrderCourse : includes
+OrderCourse "*" --> "1" Course
 
 @enduml
