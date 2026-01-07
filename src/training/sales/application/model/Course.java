@@ -87,7 +87,8 @@ public class Course {
 	    int descriptionWidth = 65;
 	    int durationDaysWidth = 10;
 	    int typeWidth = 15;
-	    int priceWidth =10;
+	    int priceWidth = 10;
+	    int idWidth = 3;
 
 	    // Course type : onSite or online or both
 	    String courseType = (isOnSite() && isOnline()) ? "mixte" 
@@ -95,7 +96,8 @@ public class Course {
 	                  : "en présentiel";
 
 	    // Result
-	    return String.format("| %-"+nameWidth+"s | %-"+descriptionWidth+"s | %-"+durationDaysWidth+"s | %-"+typeWidth+"s | %-"+priceWidth+"s |",
+	    return String.format("| %-"+idWidth+"s | %-"+nameWidth+"s | %-"+descriptionWidth+"s | %-"+durationDaysWidth+"s | %-"+typeWidth+"s | %-"+priceWidth+"s |",
+	    		getId(),
 	            getName(), 
 	            getDescription(), 
 	            getDurationDays() + " jours", 
