@@ -20,7 +20,7 @@ public abstract class Person {
         this.lastname = lastname;
     }
 
-    // Getters and setters omitted for brevity
+    // Getters and setters
 
 	public String getLastname() {
 		return lastname;
