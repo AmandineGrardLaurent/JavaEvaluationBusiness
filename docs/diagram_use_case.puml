@@ -1,4 +1,4 @@
-@startuml vente formations
+@startuml use case diagram
 
 left to right direction
 
@@ -15,10 +15,12 @@ package "application vente formations" {
     usecase "afficher les formations" as DISPLAY_COURSES
     usecase "gérer son panier" as MANAGE_CART
     usecase "se connecter" as CONNECT
+    usecase "Créer un compte" as CREATE_ACCOUNT
 }
 
 
 USER -- DISPLAY_COURSES
+USER -- CREATE_ACCOUNT
 
 USER_CONNECTED -- CONFIRM_ORDER
 USER_CONNECTED -- DISPLAY_ORDERS
