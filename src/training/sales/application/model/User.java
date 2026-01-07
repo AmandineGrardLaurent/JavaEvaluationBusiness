@@ -3,6 +3,7 @@ package training.sales.application.model;
 public class User extends Person{
 	private String password;
 	private String login;
+	private int id;
 	
 	public User(String lastname, String firstname, String password, String login) {
 		super(lastname,  firstname);
@@ -27,4 +28,13 @@ public class User extends Person{
 		this.password = password;
 	}
 
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+	
+	
 }
