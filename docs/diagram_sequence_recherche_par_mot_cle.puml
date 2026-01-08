@@ -1,4 +1,4 @@
-@startuml sequence diagram - recherche par mot-clé
+@startuml diagram sequence- recherche par mot-clé
 actor Utilisateur
 participant "Main" as Main
 participant "CourseService" as CourseService
