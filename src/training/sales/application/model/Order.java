@@ -12,7 +12,6 @@ public class Order {
     private Date orderDate;
     private double totalAmount;
     private int idUser;
-    private int idCustomer;
     private Customer customer;
 
     /**
