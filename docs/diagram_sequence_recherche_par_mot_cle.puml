@@ -1,0 +1,24 @@
+@startuml sequence diagram - recherche par mot-clé
+actor Utilisateur
+participant "Main" as Main
+participant "CourseService" as CourseService
+participant "CourseDAO" as CourseDAO
+database "Database" as DB
+
+Utilisateur -> Main : sélectionner "Rechercher par mot-clé"
+Main -> Utilisateur : demander mot-clé
+Utilisateur -> Main : saisir mot-clé
+
+Main -> CourseService : getCoursesByKeyword(keyword)
+CourseService -> CourseDAO : readAllByKeyword(keyword)
+CourseDAO -> DB : requête SQL avec mot-clé
+DB --> CourseDAO : liste de formations
+CourseDAO --> CourseService : List<Course>
+CourseService --> Main : List<Course>
+
+alt liste vide
+    Main -> Utilisateur : "Aucune formation trouvée avec le mot-clé."
+else liste non vide
+    Main -> Utilisateur : afficher la liste des formations
+end
+@enduml
