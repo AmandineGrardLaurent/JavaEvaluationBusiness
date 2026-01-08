@@ -1,4 +1,4 @@
-	package training.sales.application.dao;
+package training.sales.application.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -24,7 +24,6 @@ public class OrderCourseDAO {
              PreparedStatement preparedStmt = connection.prepareStatement(sql)) {
 
             preparedStmt.setInt(1, idOrder);
-        
         		
             try (ResultSet resultSet = preparedStmt.executeQuery()) {
                 while (resultSet.next()) {
@@ -44,7 +43,6 @@ public class OrderCourseDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         return courses;
     }
 }
