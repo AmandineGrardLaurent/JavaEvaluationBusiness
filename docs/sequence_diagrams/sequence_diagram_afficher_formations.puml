@@ -1,0 +1,23 @@
+@startuml diagram sequence "Afficher les formations"
+actor Utilisateur
+participant "Main" as Main
+participant "CourseService" as Service
+participant "CourseDAO" as DAO
+database "Base de données" as DB
+
+Utilisateur -> Main : choisir "Afficher les formations"
+Main -> Service : getAllCourses()
+Service -> DAO : readAll()
+DAO -> DB : SELECT * FROM course
+DB --> DAO : liste des formations
+DAO --> Service : List<Course>
+Service --> Main : List<Course>
+
+alt liste non vide
+    Main -> Utilisateur : afficher la liste des formations
+else liste vide
+    Main -> Utilisateur : afficher message\n"Aucune formation trouvée"
+end
+
+@enduml
+
