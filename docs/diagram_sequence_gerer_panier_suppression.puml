@@ -1,0 +1,24 @@
+@startuml diagram sequence gerer panier - suppression
+actor "Utilisateur connecté" as User
+participant "Main" as Main
+participant "CartService" as CartService
+participant "CartDAO" as CartDAO
+database "Database" as DB
+
+User -> Main : sélectionner "Supprimer une formation du panier"
+Main -> User : demander l'identifiant de la formation
+User -> Main : saisir idCourse
+
+Main -> CartService : destroyCourseInCart(idCourse, idUser)
+CartService -> CartDAO : deleteCourse(idCourse, idUser)
+CartDAO -> DB : requête SQL DELETE
+
+DB --> CartDAO : nombre de lignes supprimées
+CartDAO --> CartService : boolean (succès / échec)
+
+alt suppression réussie
+    CartService -> Main : afficher "Formation supprimée"
+else suppression échouée
+    CartService -> Main : afficher "Erreur lors de la suppression de la formation."
+end
+@enduml
