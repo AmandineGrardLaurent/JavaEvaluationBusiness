@@ -9,22 +9,33 @@ import java.util.List;
 
 import training.sales.application.model.Course;
 
+/**
+ * Data Access Object (DAO) for retrieving courses associated with a specific order.
+ * Provides methods to fetch the list of courses belonging to an order from the database.
+ */
 public class OrderCourseDAO {
-	public List<Course> readCourseByOrder(int idOrder) {
+
+    /**
+     * Retrieves all courses linked to a given order ID.
+     *
+     * @param idOrder the ID of the order
+     * @return a list of Course objects associated with the order
+     */
+    public List<Course> readCourseByOrder(int idOrder) {
         List<Course> courses = new ArrayList<>();
         String sql = "SELECT oc.id_course, name, description, duration_days, is_on_site, is_online, price, oc.id_order "
-        		+ "FROM Course "
-        		+ "JOIN order_course AS oc "
-        		+ "ON oc.id_course = course.id_course "
-        		+ "JOIN order_ "
-        		+ "ON order_.id_order = oc.id_order "
-        		+ "WHERE oc.id_order = ?";
+                   + "FROM Course "
+                   + "JOIN order_course AS oc "
+                   + "ON oc.id_course = course.id_course "
+                   + "JOIN order_ "
+                   + "ON order_.id_order = oc.id_order "
+                   + "WHERE oc.id_order = ?";
 
         try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement preparedStmt = connection.prepareStatement(sql)) {
 
             preparedStmt.setInt(1, idOrder);
-        		
+
             try (ResultSet resultSet = preparedStmt.executeQuery()) {
                 while (resultSet.next()) {
                     int idCourse = resultSet.getInt("oc.id_course");
@@ -32,7 +43,7 @@ public class OrderCourseDAO {
                     String description = resultSet.getString("description");
                     int durationDays = resultSet.getInt("duration_days");
                     boolean isOnSite = resultSet.getBoolean("is_on_site");
-                    boolean isOnline = resultSet.getBoolean("is_online");		
+                    boolean isOnline = resultSet.getBoolean("is_online");
                     double price = resultSet.getDouble("price");
 
                     Course course = new Course(idCourse, name, description, durationDays, isOnSite, isOnline, price);
