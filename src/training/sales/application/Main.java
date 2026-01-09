@@ -1,7 +1,6 @@
 package training.sales.application;
 
 import java.util.Scanner;
-
 import training.sales.application.model.Cart;
 import training.sales.application.model.User;
 import training.sales.application.service.CartService;
@@ -36,6 +35,7 @@ public class Main {
                 Helper.ConsoleColors.BLUE + "Quel est votre choix ? " + Helper.ConsoleColors.RESET
         );
     }
+    
 
     /**
      * Displays the menu for a connected user and asks for an option.
@@ -57,6 +57,7 @@ public class Main {
                 Helper.ConsoleColors.BLUE + "Quel est votre choix ? " + Helper.ConsoleColors.RESET
         );
     }
+    
 
     /**
      * Application entry point.
@@ -118,7 +119,7 @@ public class Main {
                 case 6:
                     User user = Helper.authenticateUser(scan, userService);
                     if (user == null) {
-                        System.out.println("Login ou mot de passe incorrect.");
+                        System.out.println("Login ou mot de passe incorrect");
                         break;
                     }
 
@@ -150,12 +151,15 @@ public class Main {
                                         "La liste des formations : ",
                                         "Aucune formation trouvée"
                                 );
-                                int courseIdToAdd = Helper.askInt(
-                                        scan,
-                                        "Saisissez l'id de la formation que vous souhaitez ajouter : "
-                                );
+
+                                int courseIdToAdd = Helper.askIdCourse(
+                                		scan, 
+                                		courseService, 
+                                		"Saisissez l'id de la formation que vous souhaitez ajouter : ");
+                                
                                 Cart cart = new Cart(user.getId(), courseIdToAdd);
                                 cartService.addCourseInCart(cart);
+
                                 break;
                             case 4:
                                 Helper.displayItems(
@@ -163,10 +167,12 @@ public class Main {
                                         "Votre panier :",
                                         "Votre panier est vide"
                                 );
-                                int courseIdToDelete = Helper.askInt(
-                                        scan,
+                                
+                                int courseIdToDelete = Helper.askIdCourse(
+                                        scan, courseService,
                                         "Saisissez l'id de la formation que vous souhaitez supprimer : "
                                 );
+                                
                                 cartService.destroyCourseInCart(courseIdToDelete, user.getId());
                                 break;
                             case 5:
@@ -196,7 +202,6 @@ public class Main {
                     );
             }
         }
-
         scan.close();
         System.out.println("Au revoir !");
     }
