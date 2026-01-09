@@ -1,6 +1,10 @@
 package training.sales.application.model;
 
 import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import training.sales.application.Helper;
 
 /**
  * Represents an order in the application.
@@ -13,6 +17,7 @@ public class Order {
     private double totalAmount;
     private int idUser;
     private Customer customer;
+	private List<Course> courses;
 
     /**
      * Constructs an Order with the specified attributes.
@@ -70,16 +75,37 @@ public class Order {
 		this.customer = customer;
 	}
 
+	public List<Course> getCourses() {
+		return courses;
+	}
+
+	public void setCourses(List<Course> courses) {
+		this.courses = courses;
+	}
+	
+	public String displayCourses() {
+		if (courses == null || courses.isEmpty()) {
+	        return "Aucune formation associée à cette commande.";
+	    }
+
+	    return "Formations commandées :\n" +
+	            courses.stream()
+	                   .map(Course::toString)
+	                   .collect(Collectors.joining("\n"));
+	}
+
 	@Override
 	public String toString() {
-		return ("======================== Commande n°" + this.id + " ========================"
+		return (Helper.ConsoleColors.BLUE + "Commande n°" + this.id + " ========================" + Helper.ConsoleColors.RESET
 				+ "\nDate : " + this.orderDate
 				+ "\nTotal de la commande : " + this.totalAmount + "€"
-				+ "\nBénéficiaire --------------------- " 
+				+ "\n\nBénéficiaire : " 
 				+ "\nNom : " + customer.getFirstname() + " " + customer.getLastname()
 				+ "\nEmail : " + customer.getEmail() 
 				+ "\nAdresse : " + customer.getAddress() 
-				+ "\nTel : " + customer.getPhoneNumber());
+				+ "\nTel : " + customer.getPhoneNumber()
+				+ "\n\n" + displayCourses());
+			
 	}
 
 }

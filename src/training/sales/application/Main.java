@@ -211,7 +211,7 @@ public class Main {
                             // Show user orders
                             case 6:
                                 Helper.displayItems(
-                                        orderService.getOrderByUser(user.getId()),
+                                        orderService.getOrderWithCoursesByUser(user.getId()),
                                         "Voici vos commandes : ",
                                         "Aucune commande trouvée"
                                 );
