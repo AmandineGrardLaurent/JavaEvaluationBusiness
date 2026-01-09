@@ -54,33 +54,39 @@ L’application permet :
 database
 │   ├── data.sql
 │   ├── schema.sql
-training.sales.application
 │
-├── model
-│   ├── Cart.java
-│   ├── Course.java
-│   ├── Customer.java
-│   ├── Order.java
-│   ├── OrderCourse.java
-│   ├── Person.java
-│   └── User.java
+docs
 │
-├── dao
-│   ├── CartDAO.java
-│   ├── CourseDAO.java
-│   ├── DatabaseConnection.java
-│   ├── OrderDAO.java
-│   ├── OrderCourseDAO.java
-│   └── UserDAO.java
+src
+    ├──training.sales.application
+        │
+        ├── model
+        │   ├── Cart.java
+        │   ├── Course.java
+        │   ├── Customer.java
+        │   ├── Order.java
+        │   ├── OrderCourse.java
+        │   ├── Person.java
+        │   └── User.java
+        │
+        ├── dao
+        │   ├── CartDAO.java
+        │   ├── CourseDAO.java
+        │   ├── DatabaseConnection.java
+        │   ├── OrderDAO.java
+        │   ├── OrderCourseDAO.java
+        │   └── UserDAO.java
+        │
+        ├── service
+        │   ├── CartService.java
+        │   ├── CourseService.java
+        │   ├── OrderService.java
+        │   └── UserService.java
+        │
+        ├── Helper.java
+        └── Main.java
 │
-├── service
-│   ├── CartService.java
-│   ├── CourseService.java
-│   ├── OrderService.java
-│   └── UserService.java
-│
-├── Helper.java
-└── Main.java
+config.properties
 
 ```
 
