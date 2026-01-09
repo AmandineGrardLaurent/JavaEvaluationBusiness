@@ -1,4 +1,6 @@
 @startuml sequence diagram se connecter
+title Se connecter
+
 actor Utilisateur
 participant "Main" as Main
 participant "UserService" as UserService
@@ -6,15 +8,24 @@ participant "UserDAO" as UserDAO
 database "Database" as DB
 
 Utilisateur -> Main : choisir "Se connecter"
+activate Main
+
 Main -> Utilisateur : demander login
 Utilisateur -> Main : saisir login
 Main -> Utilisateur : demander mot de passe
 Utilisateur -> Main : saisir mot de passe
 
 Main -> UserService : getUserByLoginPassword(login, password)
+activate UserService
+
 UserService -> UserDAO : readByLoginPassword(login, password)
+activate UserDAO
+
 UserDAO -> DB : requête SQL
+activate DB
+
 DB --> UserDAO : résultat
+deactivate DB
 
 alt utilisateur trouvé
     UserDAO --> UserService : User
@@ -25,4 +36,8 @@ else utilisateur non trouvé
     UserService --> Main : null
     Main -> Utilisateur : afficher "Login ou mot de passe incorrect"
 end
+deactivate UserDAO
+deactivate UserService
+deactivate Main
+
 @enduml
