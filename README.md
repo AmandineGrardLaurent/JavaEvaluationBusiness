@@ -104,15 +104,31 @@ Dans votre terminal SQL :
 source schema.sql;
 source data.sql;
 ```
+---
+--- 
 
+## Configuration de la base de données
+
+Avant de lancer l'application, assurez-vous que le fichier `config.properties` est correctement configuré.  
+Il contient les informations de connexion à la base de données :
+
+```properties
+db.url=jdbc:mysql://localhost:3306/training_sales_application
+db.user=YOUR_USER
+db.password=YOUR_PASSWORD
+```
+- db.url : URL de connexion à la base de données
+- db.user : Nom de l'utilisateur de la base
+- db.password : mot de passe associé
 ---
 
 ## Lancer l'application
 
 1. Cloner le projet
 2. Initialiser la base de données (schema + data)
-3. Configurer la connection JDBC (DatabaseConnection)
-4. Lancer la classe Main
+3. Ajouter le fichier 'config.properties' pour la connection JCDB
+4. Inclure le driver MariaDB (présent dans le fichier lib) dans le classpath lors de la compilation et l'execution
+5. Lancer la classe Main
 
 ---
 ## Technologies utilisées
