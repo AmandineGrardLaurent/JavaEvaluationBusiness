@@ -42,4 +42,18 @@ public class CourseService {
     public List<Course> getCoursesByKeyword(String keyword) {
         return courseDao.readAllByKeyword(keyword);
     }
+    
+    /**
+     * Checks whether a course exists based on its identifier.
+     *
+     * @param idCourse the identifier of the course to verify
+     * @return true if the course exists, false otherwise
+     */
+    public boolean verifyCourseExists(int idCourse) {
+    	return getAllCourses().stream()
+    						  .anyMatch(course -> course.getId() == idCourse);
+    }
+
 }
+
+
