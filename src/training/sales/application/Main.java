@@ -22,7 +22,8 @@ public class Main {
      * @return the chosen menu option as an integer
      */
     public static int askGuestChoice(Scanner scan) {
-        System.out.println("[1] Afficher la liste de toutes les formations\n"
+        System.out.println("Menu visiteur : \n"
+        		+ "[1] Afficher la liste de toutes les formations\n"
                 + "[2] Afficher les formations en présentiel\n"
                 + "[3] Afficher les formations en ligne\n"
                 + "[4] Afficher les formations mixtes\n"
@@ -45,7 +46,8 @@ public class Main {
      * @return the chosen menu option as an integer
      */
     public static int askConnectedChoice(Scanner scan) {
-        System.out.println("[1] Afficher la liste de toutes les formations\n"
+        System.out.println("Menu utilisateur connecté : \n"
+        		+ "[1] Afficher la liste de toutes les formations\n"
                 + "[2] Afficher votre panier\n"
                 + "[3] Ajouter une formation dans votre panier\n"
                 + "[4] Supprimer une formation dans votre panier\n"
