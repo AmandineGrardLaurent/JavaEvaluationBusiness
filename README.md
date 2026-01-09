@@ -50,7 +50,7 @@ L’application permet :
 ---
 
 ## Architecture du projet
-
+```
 database
 │   ├── data.sql
 │   ├── schema.sql
@@ -82,6 +82,7 @@ training.sales.application
 ├── Helper.java
 └── Main.java
 
+```
 
 ---
 
