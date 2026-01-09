@@ -1,6 +1,8 @@
-@startuml diagram sequence gerer panier - suppression
+@startuml sequence diagram  gerer le panier - supprimer une formation
+
 actor "Utilisateur connecté" as User
 participant "Main" as Main
+participant "CourseService" as CourseService
 participant "CartService" as CartService
 participant "CartDAO" as CartDAO
 database "Database" as DB
@@ -9,16 +11,24 @@ User -> Main : sélectionner "Supprimer une formation du panier"
 Main -> User : demander l'identifiant de la formation
 User -> Main : saisir idCourse
 
-Main -> CartService : destroyCourseInCart(idCourse, idUser)
-CartService -> CartDAO : deleteCourse(idCourse, idUser)
-CartDAO -> DB : requête SQL DELETE
+Main -> CourseService : verifyCourseExists(idCourse)
+alt ID valide
+    CourseService --> Main : true
 
-DB --> CartDAO : nombre de lignes supprimées
-CartDAO --> CartService : boolean (succès / échec)
+    Main -> CartService : destroyCourseInCart(idCourse, idUser)
+    CartService -> CartDAO : deleteCourse(idCourse, idUser)
+    CartDAO -> DB : requête SQL DELETE
+    DB --> CartDAO : nombre de lignes supprimées
+    CartDAO --> CartService : boolean (succès / échec)
 
-alt suppression réussie
-    CartService -> Main : afficher "Formation supprimée"
-else suppression échouée
-    CartService -> Main : afficher "Erreur lors de la suppression de la formation."
+    alt suppression réussie
+        CartService -> Main : afficher "Formation supprimée"
+    else suppression échouée
+        CartService -> Main : afficher "Erreur lors de la suppression de la formation."
+    end
+
+else ID invalide
+    CourseService --> Main : false
+    Main -> User : afficher "L'identifiant saisi n'existe pas."
 end
 @enduml
