@@ -1,4 +1,5 @@
 @startuml sequence diagram  gerer le panier - ajouter une formation
+title Gérer le panier - Ajouter une formation
 
 actor "Utilisateur connecté" as User
 participant "Main" as Main
@@ -8,18 +9,31 @@ participant "CartDAO" as CartDAO
 database "Database" as DB
 
 User -> Main : sélectionner "Ajouter une formation au panier"
+activate Main
+
 Main -> User : demander l'identifiant de la formation
 User -> Main : saisir idCourse
 
 Main -> CourseService : verifyCourseExists(idCourse)
+activate CourseService
+
 alt ID valide
     CourseService --> Main : true
+    deactivate CourseService
 
     Main -> CartService : addCourseInCart(cart)
+    activate CartService
+
     CartService -> CartDAO : addCourse(cart)
+    activate CartDAO
+
     CartDAO -> DB : requête SQL insertion
+    activate DB
     DB --> CartDAO : résultat insertion
-    CartDAO --> CartService : boolean (succès / échec)
+    deactivate DB
+
+    CartDAO --> CartService : boolean
+    deactivate CartDAO
 
     alt insertion réussie
         CartService -> Main : afficher "Formation ajoutée à votre panier"
@@ -27,8 +41,13 @@ alt ID valide
         CartService -> Main : afficher "Erreur lors de l'ajout de la formation dans le panier."
     end
 
+    deactivate CartService
+
 else ID invalide
     CourseService --> Main : false
+    deactivate CourseService
     Main -> User : afficher "L'identifiant saisi n'existe pas."
 end
+
+deactivate Main
 @enduml
