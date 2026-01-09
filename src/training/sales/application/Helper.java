@@ -2,8 +2,8 @@ package training.sales.application;
 
 import java.util.List;
 import java.util.Scanner;
-
 import training.sales.application.model.User;
+import training.sales.application.service.CourseService;
 import training.sales.application.service.UserService;
 
 /**
@@ -96,4 +96,29 @@ public class Helper {
 
         return userService.getUserByLoginPassword(login, password);
     }
+    
+    /**
+     * Prompts the user to enter a course ID and validates its existence.
+     * 
+     * This method repeatedly asks for an integer input until the entered
+     * course ID exists in the system.
+     *
+     * @param scan the Scanner used to read user input
+     * @param courseService the service used to verify if the course exists
+     * @param message the message displayed to prompt the user
+     * @return a valid course ID existing in the system
+     */
+    public static int askIdCourse(Scanner scan, CourseService courseService, String message) {
+        int id;
+        while (true) {
+            id = Helper.askInt(scan, message);
+            if (!courseService.verifyCourseExists(id)) {
+                System.out.println(ConsoleColors.RED + "L'identifiant saisit n'existe pas." + ConsoleColors.RESET);
+                continue;
+            }
+            break;
+        }
+        return id;
+    }
+
 }
